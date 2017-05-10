@@ -45,6 +45,8 @@ class CartsController < ApplicationController
         format.json { render json: @cart.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
   # PATCH/PUT /carts/1
@@ -71,6 +73,7 @@ class CartsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to store_url }
       format.json { head :no_content }
+      format.xml  { head :ok }
     end
   end
 
@@ -93,6 +96,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.fetch(:cart, {})
+      params.require(:cart)
     end
 end
